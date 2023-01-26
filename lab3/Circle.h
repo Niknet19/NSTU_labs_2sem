@@ -37,6 +37,7 @@ public:
 	bool operator>(const Circle &rhs) const;
 	bool operator<=(const Circle &rhs) const;
 	bool operator>=(const Circle &rhs) const;
+	bool operator==(const Circle &rhs) const;
 };
 
 
