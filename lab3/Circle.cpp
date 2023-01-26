@@ -89,6 +89,7 @@ center_.x+=x;
 center_.y+=y;
 }
 Circle::Circle(): center_(0,0),fill_color_(WHITE),outline_color_(BLACK),radius_(1){}
+
 bool Circle::operator==(const Circle &rhs) const
 {
 	return rhs.radius_==radius_;
