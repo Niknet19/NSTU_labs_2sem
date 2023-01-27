@@ -1,10 +1,14 @@
 #include "Circle.h"
 Circle::Circle(const Point &center, double radius, Color fillColor, Color outlineColor)
 	: center_(center), radius_(radius), fill_color_(fillColor), outline_color_(outlineColor)
-{}
+{
+	if (radius < 0)throw std::invalid_argument("Negative radius");
+}
 
 Circle::Circle(const double centerx, const double centery, double radius, Color fillColor, Color outlineColor): center_(centerx,centery),radius_(radius),fill_color_(fillColor),outline_color_(outlineColor)
-{}
+{
+	if (radius < 0)throw std::invalid_argument("Negative radius");
+}
 
 void Circle::setCenter(const Point &center)
 {
@@ -14,6 +18,7 @@ void Circle::setCenter(const Point &center)
 void Circle::setRadius(double radius)
 {
 	radius_ = radius;
+	if(radius<0)throw std::invalid_argument("Negative radius");
 }
 
 void Circle::setFillColor(Color fillColor)

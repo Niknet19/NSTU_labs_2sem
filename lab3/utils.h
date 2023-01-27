@@ -1,6 +1,8 @@
 #ifndef UTILS_H
 #define UTILS_H
 
+struct IsNegativeException{};
+
 enum Color
 {
 	RED, GREEN, BLUE, WHITE, BLACK,

@@ -1,6 +1,7 @@
 #ifndef CIRCLE_H
 #define CIRCLE_H
 #include <iostream>
+#include <exception>
 #include "utils.h"
 #include <fstream>
 
