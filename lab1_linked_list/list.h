@@ -18,6 +18,10 @@ void popFront(Node** headRef);
 
 Node *numOfOccurrences(Node *head, int value);
 
+int deleteEquals(Node* headRef,int value);
+
+int deleteAllEquals(Node* headRef);
+
 void insertListPos(Node** headRef, int newValue, int pos);
 
 void deletePos(Node** headRef, int pos);

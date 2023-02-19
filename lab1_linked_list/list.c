@@ -155,4 +155,33 @@ if(pos==0){
 	free(ptr);
 }
 
+int deleteEquals(Node* headRef,int value){
+	Node* prev_ptr;
+	Node* ptr = headRef;
+	int cnt=0;
+	while(ptr!=NULL){
+		if(ptr->data==value){
+			if(cnt!=0){
+			prev_ptr->next=ptr->next;
+			free(ptr);
+			ptr=prev_ptr->next;
+				continue;
+			}
+			cnt++;
+		}
+		prev_ptr = ptr;
+		ptr = ptr->next;
+	}
+}
+
+
+int deleteAllEquals(Node *headRef)
+{
+	while (headRef!=NULL){
+		deleteEquals(headRef,headRef->data);
+		headRef=headRef->next;
+	}
+	return 0;
+}
+
 
