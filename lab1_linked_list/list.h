@@ -14,6 +14,8 @@ void pushFront(Node** headRef, int data);
 
 Node* createList(int keys[], int n);
 
+Node* createNewList(int value);
+
 void popFront(Node** headRef);
 
 Node *numOfOccurrences(Node *head, int value);

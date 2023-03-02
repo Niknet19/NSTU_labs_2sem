@@ -1,7 +1,7 @@
 #include "list.h"
 
 
-void pushFront(Node** headRef, int data){
+void pushFront(Node** headRef, int data){//Помещам элемент в начало спика
 	Node* temp = (Node*)malloc(sizeof(Node));
 	temp->data = data;
 	temp->next = *headRef;
@@ -9,25 +9,24 @@ void pushFront(Node** headRef, int data){
 }
 
 
-Node* createList(int values[], int n){
+Node* createList(int values[], int n){//Создаем список на основе массива
 	int i;
 	Node* head = NULL;
 	for (i = n - 1; i >= 0; i--) {
 		pushFront(&head, values[i]);
 	}
-
 	return head;
 }
 
 
-void printList(Node* headRef){
+void printList(Node* headRef){//Вывод списка нерекурсивно
 	Node* curr=headRef;
 	if(curr==NULL){
-		printf("Empty!\n");
+		printf("\nEmpty!\n");
 		return;
 	}
 	printf("\n");
-	while (curr!=NULL){
+	while (curr){
 		printf("%d->",curr->data);
 		curr=curr->next;
 	}
@@ -35,7 +34,7 @@ void printList(Node* headRef){
 }
 
 
-void popFront(Node** headRef)
+void popFront(Node** headRef)//Удаляем элемент из начала
 {
 	if(headRef==NULL)
 	{
@@ -48,7 +47,7 @@ void popFront(Node** headRef)
 }
 
 
-Node *numOfOccurrences(Node *head, int value)
+Node *numOfOccurrences(Node *head, int value)//Считаем число вжождений value в список
 {
 	Node *firstOccurrence = NULL;//Певрое вхожление элемента в список
 	int cnt = 0;//Счетчик количества вхождений
@@ -66,7 +65,9 @@ Node *numOfOccurrences(Node *head, int value)
 	printf("\nNum of occurrences:%d\n", cnt);
 	return firstOccurrence;
 }
-int listSize(Node *headRef)
+
+
+int listSize(Node *headRef)//Считаем число элементов в списке
 {
 	Node *head = headRef;
 	int cnt = 0;
@@ -79,7 +80,7 @@ int listSize(Node *headRef)
 }
 
 
-int getListDataPos(Node *headRef, int pos)
+int getListDataPos(Node *headRef, int pos)//Получение данных по индексу
 {
 	for (int i = 0; i < pos; ++i) {
 		if(headRef==NULL)return -1;
@@ -89,7 +90,7 @@ int getListDataPos(Node *headRef, int pos)
 }
 
 
-Node* getListNodePos(Node* headRef,int pos){
+Node* getListNodePos(Node* headRef,int pos){//Получение указателя на элемент по индексу
 	for (int i = 0; i < pos; ++i) {
 		if(headRef==NULL)return NULL;
 		headRef=headRef->next;
@@ -98,7 +99,7 @@ Node* getListNodePos(Node* headRef,int pos){
 }
 
 
-void insertListPos(Node **headRef,int newValue, int pos)
+void insertListPos(Node **headRef,int newValue, int pos)//Добавление элемента в произвольное место
 {
 	if(pos==0){
 		pushFront(headRef,newValue);
@@ -119,52 +120,59 @@ void insertListPos(Node **headRef,int newValue, int pos)
 		Node* ptr = (*headRef);
 		for(int i=0;i<pos;i++)
 		{
+			if(ptr==NULL){
+				printf("\nCan't insert into list!\n");
+				return;
+			}
 			prev_ptr = ptr;//Храним указатели на текущий и предыдущий элемент списка
 			ptr = ptr->next;
 		}
-
 		temp->next = ptr; //Вставляем между текущим и предыдущим
-
 		prev_ptr->next = temp;
 	}
 }
 
-void deletePos(Node **headRef, int pos)
+void deletePos(Node **headRef, int pos)//Удаление элемента из произвольного места
 {
 
-if(headRef==NULL){
-	printf("List is empty!\n");
-	return;
-}
-
-if(pos==0){
-	popFront(headRef);
-	return;
-}
-	Node* prev_ptr;
-	Node* ptr = (*headRef);
-	for(int i=0;i<pos;i++)
-	{
-		prev_ptr = ptr;//Храним указатели на текущий и предыдущий элемент списка
-		ptr = ptr->next;
+	if (*headRef == NULL) {
+		printf("List is empty!\n");
+		return;
 	}
 
+	if (pos == 0) {
+		popFront(headRef);
+		return;
+	}
+
+	Node *prev_ptr;
+	Node *ptr = (*headRef);
+	for (int i = 0; i < pos; i++) {
+		prev_ptr = ptr;//Храним указатели на текущий и предыдущий элемент списка
+		ptr = ptr->next;
+
+		if(ptr==NULL){
+			printf("\nCan't delete from list!\n");
+			return;
+		}
+	}
 	//temp->next = ptr; //Вставляем между текущим и предыдущим
 	//prev_ptr->next = temp;
-	prev_ptr->next=ptr->next;
+	prev_ptr->next = ptr->next;
 	free(ptr);
 }
 
-int deleteEquals(Node* headRef,int value){
-	Node* prev_ptr;
-	Node* ptr = headRef;
-	int cnt=0;
-	while(ptr!=NULL){
-		if(ptr->data==value){
-			if(cnt!=0){
-			prev_ptr->next=ptr->next;
-			free(ptr);
-			ptr=prev_ptr->next;
+int deleteEquals(Node *headRef, int value)
+{
+	Node *prev_ptr;
+	Node *ptr = headRef;
+	int cnt = 0;
+	while (ptr != NULL) {
+		if (ptr->data == value) {
+			if (cnt != 0) {
+				prev_ptr->next = ptr->next;
+				free(ptr);
+				ptr = prev_ptr->next;
 				continue;
 			}
 			cnt++;
@@ -182,6 +190,15 @@ int deleteAllEquals(Node *headRef)
 		headRef=headRef->next;
 	}
 	return 0;
+}
+
+
+Node *createNewList(int value)//Создаем новый список из одного элемента
+{
+	Node* head = (Node*)malloc(sizeof(Node));
+	head->data=value;
+	head->next=NULL;
+	return head;
 }
 
 
