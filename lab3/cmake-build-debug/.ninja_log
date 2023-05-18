@@ -1,8 +1,0 @@
-# ninja log v5
-5	566	6964593126796058	CMakeFiles/lab3.dir/main.cpp.obj	4d203a0b8875c967
-11	745	6964592786549553	CMakeFiles/lab3.dir/Circle.cpp.obj	c2f0c3cf4e8b18e9
-567	752	6964593129010451	lab3.exe	99f9322be01bee39
-22	427	6965070277743007	CMakeFiles/lab3.dir/Triangle.cpp.obj	8f4ddd0d809ea705
-4	1333	6965070287127923	CMakeFiles/lab3.dir/main.cpp.obj	4d203a0b8875c967
-14	1414	6965070287985607	CMakeFiles/lab3.dir/Circle.cpp.obj	c2f0c3cf4e8b18e9
-1415	1787	6965070291674076	lab3.exe	b56a7288a916aca6
